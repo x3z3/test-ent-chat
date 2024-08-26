@@ -400,6 +400,30 @@ async def conversation():
 
     return await conversation_internal(request_json, request.headers)
 
+@bp.route("/conversation/feedback", methods=["POST"])
+async def conversation_feedback():
+    if not request.is_json:
+        return jsonify({"error": "Request must be JSON"}), 415
+
+    data = await request.get_json()
+    required_keys = {"conversation", "isPositive", "additionalInfo"}
+    if not all(key in data for key in required_keys):
+        return jsonify({"error": "Missing required data"}), 400
+
+    external_api_url = ''
+
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(external_api_url, json=data)
+            if response.status_code != 200:
+                logging.error(f"External API error: {response.status_code} - {response.text}")
+                return jsonify({"error": "Failed to forward feedback"}), 500
+
+        return jsonify({"message": "Feedback successfully forwarded"}), 200
+
+    except Exception as e:
+        logging.exception("Failed to send feedback to external API")
+        return jsonify({"error": str(e)}), 500
 
 @bp.route("/frontend_settings", methods=["GET"])
 def get_frontend_settings():
