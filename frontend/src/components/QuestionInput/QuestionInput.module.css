@@ -1,0 +1,95 @@
+.questionInputContainer {
+  height: 120px;
+  position: absolute;
+  left: 6.5%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background: #ffffff;
+  box-shadow:
+    0px 8px 16px rgba(0, 0, 0, 0.14),
+    0px 0px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  display: flex;
+  align-items: center; /* Vertically center the contents */
+  padding: 0 12px; /* Add some padding */
+}
+
+.textFieldDiv {
+  flex-grow: 1;
+  width: 100%;
+  min-height: 60px; /* Ensure the text field has a minimum height */
+}
+
+.questionInputTextArea {
+  width: 100%;
+  height: 100%; /* Ensure it takes the full height of the div */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px; /* Add some padding for better appearance */
+  box-sizing: border-box;
+}
+
+.controlsContainer {
+  display: flex;
+  justify-content: space-between; /* Ensures the controls stretch across the full width */
+  align-items: center;
+  width: 100%; /* Ensure the container spans the full width */
+  margin-top: 10px; /* Add margin to separate from text field */
+}
+
+.feedbackButtons {
+  display: flex;
+  gap: 8px;
+}
+
+
+.thumbsUpButton, .thumbsDownButton {
+  cursor: pointer;
+  width: 27px;
+  height: 30px;
+}
+
+.activeButton {
+  color: green; /* Default color */
+}
+
+.thumbsUpButton.activeButton {
+  color: lightgreen; /* Highlight color when active */
+}
+
+.thumbsDownButton.activeButton {
+  color: red; /* Highlight color when active */
+}
+
+.questionInputSendButtonContainer {
+  display: flex;
+  justify-content: flex-end; /* Ensure the send button is on the right */
+  width: 24px; /* Size of the send button */
+  height: 23px;
+  margin-top: -16px;
+}
+
+.questionInputSendButtonDisabled {
+  width: 24px;
+  height: 23px;
+  background: none;
+  color: #424242;
+}
+
+.questionInputBottomBorder {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  left: 0%;
+  bottom: 0%;
+  background: radial-gradient(106.04% 106.06% at 100.1% 90.19%, #0f6cbd 33.63%, #8dddd8 100%);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+@media (max-width: 480px) {
+  .questionInputContainer {
+    left: 16.5%;
+  }
+}
