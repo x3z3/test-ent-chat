@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import { Dialog, Stack, TextField } from '@fluentui/react'
+import { Dialog, Stack, TextField, CommandBarButton } from '@fluentui/react'
 import { CopyRegular } from '@fluentui/react-icons'
 
 import { CosmosDBStatus } from '../../api'
@@ -77,6 +77,12 @@ const Layout = () => {
             </Link>
           </Stack>
           <Stack horizontal tokens={{ childrenGap: 4 }} className={styles.shareButtonContainer}>
+            <CommandBarButton
+              className={styles.uploadButtonRoot} // Use the new class from the CSS
+              iconProps={{ iconName: 'Upload' }} // Ensure the icon is set correctly
+              text="Upload"
+              onClick={() => window.open('https://hypertherm.sharepoint.com', '_blank')}
+            />
             {appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured && (
               <HistoryButton
                 onClick={handleHistoryClick}

@@ -409,8 +409,12 @@ async def conversation_feedback():
     required_keys = {"conversation", "isPositive", "additionalInfo"}
     if not all(key in data for key in required_keys):
         return jsonify({"error": "Missing required data"}), 400
+    
+    # Convert Conversation to strings
+    if isinstance(data.get("conversation"), list):
+        data["conversation"] = str(data["conversation"])
 
-    external_api_url = ''
+    external_api_url = "https://prod-187.westus.logic.azure.com/workflows/16828b5d7edf4f02b5ee1a27bd8fba5e/triggers/manual/paths/invoke/conversation/feedback?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Vmq_8JBhmFZO4BvoLpkzD9Ws1eWTuXPZScAsynSzO6o"
 
     try:
         async with httpx.AsyncClient() as client:

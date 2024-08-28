@@ -59,6 +59,16 @@ export const QuestionInput = ({ onSend, onFeedbackSubmit, disabled, placeholder,
 
   const sendQuestionDisabled = disabled || !question.trim()
 
+  const getBottomBorderColor = () => {
+    if (feedbackType === 'positive') {
+      return 'radial-gradient(106.04% 106.06% at 100.1% 90.19%, #00FF00 33.63%, #7FFF00 100%)'; // Green gradient
+    } else if (feedbackType === 'negative') {
+      return 'radial-gradient(106.04% 106.06% at 100.1% 90.19%, #FF0000 33.63%, #FF4500 100%)'; // Red gradient
+    } else {
+      return 'radial-gradient(106.04% 106.06% at 100.1% 90.19%, #0f6cbd 33.63%, #8dddd8 100%)'; // Original blue gradient
+    }
+  };
+
   return (
     <Stack className={styles.questionInputContainer}>
       <div className={styles.textFieldDiv}>
@@ -127,7 +137,10 @@ export const QuestionInput = ({ onSend, onFeedbackSubmit, disabled, placeholder,
           )}
         </div>
       </div>
-      <div className={styles.questionInputBottomBorder} />
+      <div 
+        className={styles.questionInputBottomBorder}
+        style={{ background: getBottomBorderColor() }} // Apply the dynamic background color 
+      />
     </Stack>
   );
   
